@@ -1,72 +1,51 @@
 # Namane Supply OS — QR-Powered Customer + Operations Platform
 
-Namane Supply OS is a local-first web app for **Namane Images / Namane Supply** (Johannesburg CO2 laser cutting and engraving studio).
+Namane Supply OS is a local-first web app for **Namane Images / Namane Supply** — a Johannesburg CO2 laser cutting and engraving studio.
 
 It combines:
-- A **public QR experience layer** (education, services, quoting, internship intake, AI-production explainer, simulation game).
-- An **internal operations layer** (inventory, orders, scan station, sync queue, owner dashboard exports).
+
+- A **public QR experience layer** for education, services, quoting, internship intake, AI-production explanation, and simulation training.
+- An **internal operations layer** for inventory, orders, scan station, sync queue, owner dashboard exports, and local-first workflow control.
 
 ## What the app does
 
 ### Public pages
+
 - **Home:** “Evolution of Cutting” timeline with CO2-factual explanation and CTA actions.
-- **What We Do:** business positioning, services, supported/non-supported materials.
+- **What We Do:** business positioning, services, supported and non-supported materials.
 - **Quote:** guided quotation builder with estimate range, readiness score, and risk flags.
 - **Learn:** educational laser section with interactive material selector and good-vs-bad file/settings guidance.
 - **Internship:** serious training pipeline application form.
-- **AI Production:** how AI supports quoting/planning/training/admin (not direct machine control).
+- **AI Production:** how AI supports quoting, planning, training, and admin — not direct machine control.
 - **Simulation:** “Cut Master: Namane Supply Training Mode” educational fabrication game.
 - **Process:** automation workflow and connector-ready mock cards.
 
 ### Internal pages
+
 - Inventory
 - Orders
 - Scan
 - Sync
-- Dashboard (leads, internships, simulation runs, exports, clear local public data)
+- Dashboard for leads, internships, simulation runs, exports, and clearing local public data
+
+## Architecture
+
+- **Local-first:** operational state is stored in browser local storage through a snapshot store in `src/lib/store.ts`.
+- **Offline-capable:** service worker and app manifest are included in `public/sw.js` and `public/manifest.webmanifest`.
+- **QR-ready:** item labels can be generated as QR images in-app through the QR-style SVG generator in `src/lib/qr.ts`.
+- **Connector-ready:** pluggable connector interface with example adapters for GitHub dispatch and ERP webhook in `src/connectors/index.ts`.
+- **GitHub deployable:** Vite static build output can be deployed to GitHub Pages or any static host.
+
+## Functional modules
+
+- Inventory management with low-stock visibility.
+- Work order intake and tracking.
+- Scan station for stock movements and QR generation.
+- Offline sync queue with connector push.
+- Public quote, internship, education, simulation, and customer journey capture.
 
 ## Run locally
 
 ```bash
 npm install
 npm run dev
-```
-
-## QR mode usage
-
-1. Open the app and use the **Public** navigation.
-2. Start at `home` for the QR landing story and CTAs.
-3. Capture quote/internship/simulation activity locally.
-
-## Export leads and operational CSV
-
-Go to **Internal → dashboard** and export:
-- Quote requests CSV
-- Internship applications CSV
-- Simulation runs CSV
-
-## Replace content or visuals
-
-- Edit business/service/education/simulation content in `src/data/content.ts`.
-- Edit seed inventory/order data in `src/data/materials.ts`.
-- Edit styles/theme/animations in `src/styles.css`.
-- Edit page logic and flows in `src/App.tsx`.
-
-## Connectors and future integrations
-
-- Existing connector stubs are in `src/connectors/index.ts`.
-- Queue-based sync events are stored in the snapshot (`src/lib/store.ts`) so future Gmail/Drive/Airtable/etc integrations can push from one place.
-- No API keys are required for current V1.
-
-## Deployment options
-
-- Local laptop (offline-capable via local-first data + service worker)
-- GitHub Pages (deploy `dist/`)
-- Vercel (static deploy)
-- Netlify (static deploy)
-
-## Build
-
-```bash
-npm run build
-```

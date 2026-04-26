@@ -1,0 +1,9 @@
+{
+  "name": "Namane Supply OS",
+  "short_name": "SupplyOS",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#0f172a",
+  "icons": []
+}

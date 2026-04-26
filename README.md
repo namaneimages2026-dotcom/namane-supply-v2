@@ -1,23 +1,29 @@
-# Namane Supply — Laser Manufacturing & Training Lab
+# Namane Supply OS — QR-Powered Customer + Operations Platform
 
-Market-ready React + TypeScript web application for Namane Supply.
+Namane Supply OS is a local-first web app for **Namane Images / Namane Supply** (Johannesburg CO2 laser cutting and engraving studio).
 
-## What this app includes
+It combines:
+- A **public QR experience layer** (education, services, quoting, internship intake, AI-production explainer, simulation game).
+- An **internal operations layer** (inventory, orders, scan station, sync queue, owner dashboard exports).
 
-- Business website for CO2 laser cutting and engraving services
-- Education hub for laser theory, safety, materials, maintenance, quoting, and workflow
-- Internship hub with operator-readiness pathway
-- Interactive Laser Lab simulation game
-- Quote system with Namane Supply pricing references
-- User dashboard and admin-style operational dashboard
+## What the app does
 
-## Namane Supply focus
+### Public pages
+- **Home:** “Evolution of Cutting” timeline with CO2-factual explanation and CTA actions.
+- **What We Do:** business positioning, services, supported/non-supported materials.
+- **Quote:** guided quotation builder with estimate range, readiness score, and risk flags.
+- **Learn:** educational laser section with interactive material selector and good-vs-bad file/settings guidance.
+- **Internship:** serious training pipeline application form.
+- **AI Production:** how AI supports quoting/planning/training/admin (not direct machine control).
+- **Simulation:** “Cut Master: Namane Supply Training Mode” educational fabrication game.
+- **Process:** automation workflow and connector-ready mock cards.
 
-Namane Supply is a Johannesburg-based CO2 laser cutting and engraving studio focused on non-metal fabrication.
-
-Supported work includes leather tags, patches, acrylic signage, MDF/wood signage, product branding, prototyping, and short-run manufacturing.
-
-Namane Supply does not offer metal cutting, fiber laser, CNC routing, or UV printing.
+### Internal pages
+- Inventory
+- Orders
+- Scan
+- Sync
+- Dashboard (leads, internships, simulation runs, exports, clear local public data)
 
 ## Run locally
 
@@ -26,29 +32,41 @@ npm install
 npm run dev
 ```
 
-Open the local URL shown in your terminal, usually:
+## QR mode usage
 
-```text
-http://localhost:5173
-```
+1. Open the app and use the **Public** navigation.
+2. Start at `home` for the QR landing story and CTAs.
+3. Capture quote/internship/simulation activity locally.
 
-## Production build
+## Export leads and operational CSV
+
+Go to **Internal → dashboard** and export:
+- Quote requests CSV
+- Internship applications CSV
+- Simulation runs CSV
+
+## Replace content or visuals
+
+- Edit business/service/education/simulation content in `src/data/content.ts`.
+- Edit seed inventory/order data in `src/data/materials.ts`.
+- Edit styles/theme/animations in `src/styles.css`.
+- Edit page logic and flows in `src/App.tsx`.
+
+## Connectors and future integrations
+
+- Existing connector stubs are in `src/connectors/index.ts`.
+- Queue-based sync events are stored in the snapshot (`src/lib/store.ts`) so future Gmail/Drive/Airtable/etc integrations can push from one place.
+- No API keys are required for current V1.
+
+## Deployment options
+
+- Local laptop (offline-capable via local-first data + service worker)
+- GitHub Pages (deploy `dist/`)
+- Vercel (static deploy)
+- Netlify (static deploy)
+
+## Build
 
 ```bash
 npm run build
-npm run preview
 ```
-
-## Tech stack
-
-- React
-- TypeScript
-- Vite
-- Tailwind CSS
-- Framer Motion
-- Zustand
-- Lucide React
-
-## Notes
-
-This version uses local demo data and client-side state so it can run from a laptop without requiring a backend. The code is structured so Supabase, Firebase, Airtable, or a custom backend can be added later.

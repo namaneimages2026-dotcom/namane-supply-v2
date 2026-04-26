@@ -1,4 +1,4 @@
-import { FormEvent, useMemo, useState } from "react";
+import React, { FormEvent, useMemo, useState } from "react";
 import { connectors } from "./connectors";
 import "./styles.css";
 import { toQrDataUrl } from "./lib/qr";
